@@ -23,6 +23,14 @@ pip install owlready2 pandas
 ##Installation
 -To set up the project, clone this repository and navigate into the project directory:
 
-```bash
 git clone https://github.com/MRNaqvi/Common-Sense-Knowledege-Driven-SemanticRule-Base-Ontology-Mapping.git
 cd Common-Sense-Knowledege-Driven-SemanticRule-Base-Ontology-Mapping
+
+##Usage
+-Loading the Ontology
+Import the ontology from an RDF file:
+
+
+from owlready2 import get_ontology
+
+ontology = get_ontology("path/to/your/ontology.rdf").load()

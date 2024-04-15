@@ -1,6 +1,6 @@
 ## Overview
 
-This Python-based system leverages the Owlready2 library to manage and manipulate ontologies for semantic rule application. It's designed to support researchers and developers in fields like knowledge engineering, providing tools for ontology loading, updating, rule application, and exporting.
+Thissystem leverages the Owlready2 library to manage and manipulate ontologies for semantic rule application. It's designed to support researchers and developers in fields like knowledge engineering, providing tools for ontology loading, updating, rule application, and exporting.
 
 ## Key Features
 
@@ -19,3 +19,10 @@ Install the required Python packages using pip:
 
 ```bash
 pip install owlready2 pandas
+
+##Installation
+-To set up the project, clone this repository and navigate into the project directory:
+
+```bash
+git clone https://github.com/MRNaqvi/Common-Sense-Knowledege-Driven-SemanticRule-Base-Ontology-Mapping.git
+cd Common-Sense-Knowledege-Driven-SemanticRule-Base-Ontology-Mapping

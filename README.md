@@ -28,9 +28,44 @@ cd Common-Sense-Knowledege-Driven-SemanticRule-Base-Ontology-Mapping
 
 ##Usage
 -Loading the Ontology
-Import the ontology from an RDF file:
-
+Import the ontology from an file:
 
 from owlready2 import get_ontology
 
-ontology = get_ontology("path/to/your/ontology.rdf").load()
+ontology = get_ontology("path/to/your/core.rdf").load()
+ontology = get_ontology("path/to/your/bfo.owl").load()
+
+
+##Manipulating the Ontology
+Add new classes and instances dynamically:
+
+from owlready2 import types
+
+# Assuming 'ExistingParentClass' is a valid class in your ontology
+new_class = types.new_class("NewClassName", (ontology.ExistingParentClass,))
+new_instance = new_class("NewInstanceName")
+
+#Defining and Applying Rule Templates
+
+#Create rule templates and apply them based on specific domain knowledge:
+
+from your_module import RuleTemplate, CSK, SpecializeRule
+
+#Define a rule template
+rt = RuleTemplate("∀x (process(x) → ∃y (product(y) ∧ isOutputOf(x, y)))")
+
+# Define common sense knowledge Statement
+
+csk = CSK("Painting results in a Painted Object")
+
+#Apply the rule to generate a concrete rule
+
+concrete_rule = SpecializeRule(rt, csk)
+
+print(concrete_rule)
+
+#Saving the Ontology
+
+-Save the updated ontology back to an RDF/XML format:
+ontology.save(file="path/to/saved_ontology.rdf", format="rdfxml")
+

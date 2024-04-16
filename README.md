@@ -3,7 +3,7 @@
 Thissystem leverages the Owlready2 library to manage and manipulate ontologies for semantic rule application. It's designed to support researchers and developers in fields like knowledge engineering, providing tools for ontology loading, updating, rule application, and exporting.
 
 ## Key Features
-
+- **OPENAIAPi**: For Generating Commonsense Knwoledge Statments*
 - **Load Ontologies**: Load RDF/OWL ontologies for manipulation.
 - **Dynamic Updates**: Add new classes and instances to existing ontologies.
 - **Semantic Rule Application**: Apply common sense knowledge rules to enhance ontology.

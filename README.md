@@ -8,7 +8,8 @@ Thissystem leverages the Owlready2 library to manage and manipulate ontologies f
 - **Dynamic Updates**: Add new classes and instances to existing ontologies.
 - **Semantic Rule Application**: Apply common sense knowledge rules to enhance ontology.
 - **Export Ontologies**: Save updated ontologies back to RDF/XML format.
-
+        
+Note : Chain of tought Prompt Engineering Method has been used to get exact NL CSK statement that process late to create FOL and SPARQL.                      
 ## Prerequisites
 
 - Python 3.x

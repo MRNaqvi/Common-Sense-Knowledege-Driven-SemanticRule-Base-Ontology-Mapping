@@ -3,7 +3,7 @@
 Thissystem leverages the Owlready2 library to manage and manipulate ontologies for semantic rule application. It's designed to support researchers and developers in fields like knowledge engineering, providing tools for ontology loading, updating, rule application, and exporting.
 
 ## Key Features
-- **OPENAIAPi**: For Generating Commonsense Knwoledge Statments*
+- **OPENAIAPi**: For Generating Commonsense Knwoledge Statements*
 - **Load Ontologies**: Load RDF/OWL ontologies for manipulation.
 - **Dynamic Updates**: Add new classes and instances to existing ontologies.
 - **Semantic Rule Application**: Apply common sense knowledge rules to enhance ontology.
@@ -88,6 +88,5 @@ print(concrete_rule)
 -Save the updated ontology back to an RDF/XML format:
 ontology.save(file="path/to/saved_ontology.rdf", format="rdfxml")
 
-![Front End Main ](https://github.com/MRNaqvi/Common-Sense-Knowledege-Driven-SemanticRule-Base-Ontology-Mapping/assets/55532506/79b7c731-3c0f-40cc-9911-9e39f60d6c00)
 
 

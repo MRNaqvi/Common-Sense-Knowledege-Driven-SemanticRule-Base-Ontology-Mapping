@@ -11,7 +11,7 @@ Thissystem leverages the Owlready2 library to manage and manipulate ontologies f
         
 Note : Chain of tought Prompt Engineering Method has been used to get exact NL CSK statement that process late to create FOL and SPARQL.                      
 ## Prerequisites
-
+-OPENAI API
 - Python 3.x
 - Owlready2
 - Pandas
@@ -46,8 +46,24 @@ from owlready2 import types
 new_class = types.new_class("NewClassName", (ontology.ExistingParentClass,))
 new_instance = new_class("NewInstanceName")
 
-#Defining and Applying Rule Templates
 
+
+import openai
+
+openai.api_key = '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'
+
+response = openai.ChatCompletion.create(
+  model="gpt-4",
+  messages=[
+        {"role": "user", "content": "What is Common Sense Knowledge?"}
+    ]
+)
+
+print(response.choices[0].message['content'])
+
+Note : Chain of tought Prompt Engineering Method has been used to get exact NL CSK statement that process late to create FOL and SPARQL. 
+
+#Defining and Applying Rule Templates
 #Create rule templates and apply them based on specific domain knowledge:
 
 from your_module import RuleTemplate, CSK, SpecializeRule

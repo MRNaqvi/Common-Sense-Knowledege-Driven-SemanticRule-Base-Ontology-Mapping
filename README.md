@@ -1,92 +1,113 @@
+# Common Sense Knowledge-Driven Semantic Rule-Based Ontology Mapping
+
+This project leverages the Owlready2 library and OpenAI's language models to support the generation and integration of semantic rules into OWL/RDF ontologies. It is designed for researchers in knowledge engineering and semantic web technologies aiming to automatically convert commonsense knowledge (CSK) into logical rules for ontology enrichment.
+
+---
+
 ## Overview
 
-Thissystem leverages the Owlready2 library to manage and manipulate ontologies for semantic rule application. It's designed to support researchers and developers in fields like knowledge engineering, providing tools for ontology loading, updating, rule application, and exporting.
+The system supports:
+- **Ontology Loading and Manipulation** using Owlready2
+- **Commonsense Knowledge Generation** using LLMs (via OpenAI API)
+- **Rule Template Specialization**: Mapping natural language CSK to formal rules (FOL/SPARQL)
+- **Ontology Exporting**: Save updated ontologies in RDF/XML format
+
+A **chain-of-thought prompt engineering** strategy is used to generate high-quality natural language CSK, which is then mapped to logical rule templates (e.g., SWRL).
+
+---
 
 ## Key Features
-- **OPENAIAPi**: For Generating Commonsense Knwoledge Statements*
-- **Load Ontologies**: Load RDF/OWL ontologies for manipulation.
-- **Dynamic Updates**: Add new classes and instances to existing ontologies.
-- **Semantic Rule Application**: Apply common sense knowledge rules to enhance ontology.
-- **Export Ontologies**: Save updated ontologies back to RDF/XML format.
-        
-Note : Chain of tought Prompt Engineering Method has been used to get exact NL CSK statement that process late to create FOL and SPARQL.                      
+
+- **Commonsense Knowledge Generation** (via OpenAI LLMs)
+- **Ontology Import and Manipulation** (Owlready2)
+- **Dynamic Class and Instance Creation**
+- **Rule Template Definition and Specialization**
+- **Export of Enriched Ontologies**
+  
+---
+
 ## Prerequisites
--OPENAI API
-- Python 3.x
-- Owlready2
-- Pandas
 
-Install the required Python packages using pip:
+- Python 3.7+
+- [OpenAI API Key](https://platform.openai.com/)
+- Libraries:
+  - `owlready2`
+  - `pandas`
+  - `openai`
 
+Install required packages:
 ```bash
-pip install owlready2 pandas
+pip install owlready2 pandas openai
 
-##Installation
--To set up the project, clone this repository and navigate into the project directory:
 
+Installation
+bash
+Copy
+Edit
 git clone https://github.com/MRNaqvi/Common-Sense-Knowledege-Driven-SemanticRule-Base-Ontology-Mapping.git
 cd Common-Sense-Knowledege-Driven-SemanticRule-Base-Ontology-Mapping
-
-##Usage
--Loading the Ontology
-Import the ontology from an file:
-
+📦 Usage
+1. Load Ontologies
+python
+Copy
+Edit
 from owlready2 import get_ontology
 
-ontology = get_ontology("path/to/your/core.rdf").load()
-ontology = get_ontology("path/to/your/bfo.owl").load()
+ontology = get_ontology("path/to/core.rdf").load()
+ontology = get_ontology("path/to/bfo.owl").load()
 
 
-##Manipulating the Ontology
-Add new classes and instances dynamically:
 
+### 2. Dynamically Add Classes/Instances
+python
+Copy
+Edit
 from owlready2 import types
 
-# Assuming 'ExistingParentClass' is a valid class in your ontology
-new_class = types.new_class("NewClassName", (ontology.ExistingParentClass,))
-new_instance = new_class("NewInstanceName")
+NewClass = types.new_class("PaintedObject", (ontology.ExistingParentClass,))
+new_instance = NewClass("Object_123")
 
 
+
+### 3. Generate Commonsense Knowledge using OpenAI
 
 import openai
+import os
 
-openai.api_key = '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'
+openai.api_key = os.getenv("OPENAI_API_KEY")
 
 response = openai.ChatCompletion.create(
   model="gpt-4",
-  messages=[
-        {"role": "user", "content": "What is Common Sense Knowledge?"}
-    ]
+  messages=[{"role": "user", "content": "Painting results in a painted object"}]
 )
 
 print(response.choices[0].message['content'])
 
-Note : Chain of tought Prompt Engineering Method has been used to get exact NL CSK statement that process late to create FOL and SPARQL. 
 
-#Defining and Applying Rule Templates
-#Create rule templates and apply them based on specific domain knowledge:
-
+###4. Apply Rule Template
+python
+Copy
+Edit
 from your_module import RuleTemplate, CSK, SpecializeRule
 
-#Define a rule template
-rt = RuleTemplate("∀x (process(x) → ∃y (product(y) ∧ isOutputOf(x, y)))")
+# Define a template rule in FOL
+template = RuleTemplate("∀x (process(x) → ∃y (product(y) ∧ isOutputOf(x, y)))")
 
-# Define common sense knowledge Statement
+# Define a CSK statement
+csk = CSK("Painting results in a painted object.")
 
-csk = CSK("Painting results in a Painted Object")
-
-#Apply the rule to generate a concrete rule
-
-concrete_rule = SpecializeRule(rt, csk)
+# Specialize the rule
+concrete_rule = SpecializeRule(template, csk)
 
 print(concrete_rule)
 
-#Saving the Ontology
+
+###5. Save the Ontology
+
+ontology.save(file="output/enriched_ontology.rdf", format="rdfxml")
 
 
+@@@@Notes
+We use prompt chaining to improve the reliability of CSK statements from LLMs.
 
--Save the updated ontology back to an RDF/XML format:
-ontology.save(file="path/to/saved_ontology.rdf", format="rdfxml")
-
-
-
+Rule templates are designed manually and then specialized using extracted class/instance information from CSK.

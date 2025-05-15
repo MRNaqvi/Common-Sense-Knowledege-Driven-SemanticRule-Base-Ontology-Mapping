@@ -40,14 +40,12 @@ Install required packages:
 pip install owlready2 pandas openai
 
 
-Installation
-bash
-Copy
-Edit
+####Installation
+
 git clone https://github.com/MRNaqvi/Common-Sense-Knowledege-Driven-SemanticRule-Base-Ontology-Mapping.git
 cd Common-Sense-Knowledege-Driven-SemanticRule-Base-Ontology-Mapping
-📦 Usage
-1. Load Ontologies
+
+###1. Load Ontologies
 python
 Copy
 Edit
